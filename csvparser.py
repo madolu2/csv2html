@@ -2,5 +2,6 @@ import csv
 
 
 class CSVParser():
-    def __init__(self):
-        pass
+    def __init__(self, file_name):
+        self.file_name = file_name
+    
