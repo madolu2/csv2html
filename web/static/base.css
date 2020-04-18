@@ -1,0 +1,30 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.sign {
+    width:90%;
+    font-size: 30px;
+    text-align: center;
+    padding: 10px;
+    margin: 5%;
+}
+
+table{
+    text-align: center;
+    width: 25%;
+    margin: 0 37.5% 0 37.5%;
+}
+
+td{
+    text-transform: uppercase;
+    background-color: #e4e4e4;
+    border: solid white;
+    margin: 1px;
+    padding: 5px;
+}
+
+td:hover{
+    background-color: lightgray;
+}
