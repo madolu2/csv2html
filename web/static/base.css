@@ -4,20 +4,20 @@
 }
 
 .sign {
-    width:90%;
+    width: 90%;
     font-size: 30px;
     text-align: center;
     padding: 10px;
     margin: 5%;
 }
 
-table{
+table {
     text-align: center;
     width: 25%;
     margin: 0 37.5% 0 37.5%;
 }
 
-td{
+td {
     text-transform: uppercase;
     background-color: #e4e4e4;
     border: solid white;
@@ -25,6 +25,6 @@ td{
     padding: 5px;
 }
 
-td:hover{
+td:hover {
     background-color: lightgray;
 }
