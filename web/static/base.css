@@ -35,6 +35,27 @@ td {
     padding: 10px;
 }
 
-td:hover {
+.btn {
+    width: 20%;
+    margin:auto;
+}
+
+.form {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 50%;
+    margin:auto;
+}
+
+input {
+    text-align: center;
+    width: 50%;
+}
+
+.btn:hover {
+    background: lightgreen;
+}
+tr:hover {
     background-color: lightgray;
 }
