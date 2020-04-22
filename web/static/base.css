@@ -45,6 +45,7 @@ td {
 }
 
 .form {
+    background: white;
     display: none;
     flex-wrap: wrap;
     justify-content: center;
@@ -61,4 +62,21 @@ input {
 }
 tr:hover {
     background-color: lightgray;
+}
+
+.hidden {
+    position: fixed;
+    top:calc(50% - 32.5px);
+}
+
+.offer{
+    writing-mode: vertical-lr;
+    position: relative;
+    left: -15.5px;
+    padding: 7px 0 7px 0 ;
+}
+
+.offer:hover{
+    left: 0;
+    transition: left 1s;
 }
