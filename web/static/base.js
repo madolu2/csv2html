@@ -4,7 +4,9 @@ let btn_offer = document.querySelector(".offer"),
     btn_decline = document.querySelector(".decline"),
     new_offer = document.querySelectorAll("input"),
     table = document.querySelector("tbody"),
-    tr_values = document.querySelectorAll("tr");
+    tr_values = document.querySelectorAll("tr"),
+    trash = [],
+    table_values = {};
 
 
 pseudo_hover();
@@ -41,41 +43,43 @@ btn_decline.addEventListener("click", () => {
 
 function pseudo_hover() {
     function change_color(element, event, color) {
-        element.addEventListener('mouseover', () => {
-            children = Array.from(element.children)
+        element.addEventListener(event, () => {
+            children = Array.from(element.children);
             children.forEach(element => {
-                element.style.backgroundColor = "#ff7878";
+                element.style.backgroundColor = color;
             });
         })
     }
+
+    let th_array = [],
+        td_array = [],
+        tr_array = [];
+
     document.querySelectorAll("tr").forEach(element => {
         if (element.id != "main-cells") {
             change_color(element, 'mouseover', "#ff7878")
             change_color(element, 'mouseout', "#e4e4e4")
             element.addEventListener('click', (e) => {
-                parent = e.target.parentElement
-                parent.remove(e.target)
-                get_values(tr_values);
+                parent = e.target.parentElement;
+                trash.push(e.target);
+                parent.remove(e.target);
             })
         }
-    });
-}
-
-function get_values(array) {
-    rows = []
-    blocks = []
-    th = []
-    array.forEach((row) => {
-        for (var i = 0; i < row.cells.length; i++) {
-            blocks.push(row.cells[i].innerHTML);
+        children = Array.from(element.children);
+        children.forEach(element => {
+            if (element.parentElement.id == "main-cells") {
+                th_array.push(element.innerHTML);
+            } else {
+                td_array.push(element.innerHTML);
+            }
+        });
+        if (td_array.length) {
+            tr_array.push(td_array);
+            td_array = [];
         }
-        rows.push(blocks);
-        blocks = [];
-    })
-    th = [rows[0]];
-    rows.shift()
+    });
     table_values = {
-        headers_value: th,
-        tr_values: rows
-    };
+        'headers': th_array,
+        'tr_array': tr_array
+    }
 }
