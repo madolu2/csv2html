@@ -23,6 +23,10 @@ table {
     text-align: left;
 }
 
+::selection{
+    color: lightpink;
+}
+
 th, td{
     padding: 8px;
 }
