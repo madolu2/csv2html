@@ -1,11 +1,7 @@
 let btn_offer = document.querySelector(".offer"),
     form_offer = document.querySelector(".form"),
-    btn_accept = document.querySelector(".accept"),
     btn_decline = document.querySelector(".decline"),
-    new_offer = {
-        name: document.querySelector(".name"),
-        cost: document.querySelector(".cost")
-    },
+    new_offer = document.querySelectorAll("input"),
     table = document.querySelector("tbody");
 
 document.querySelectorAll('tr').forEach(element => {
@@ -35,14 +31,19 @@ btn_offer.addEventListener("click", () => {
 })
 
 btn_accept.addEventListener("click", () => {
-    if (new_offer.name.value != "" && new_offer.cost.value != "") {
-        new_row = table.appendChild(document.createElement("tr"));
-        new_row.innerHTML = "<td>" + new_offer.name.value + "</td><td>" + new_offer.cost.value + "</td>";
-        new_offer.name.value = "";
-        new_offer.cost.value = "";
-    }
+   new_row = table.appendChild(document.createElement("tr"));
+   new_row.innerHTML = fill_row_values();
 })
 
 btn_decline.addEventListener("click", () => {
     form_offer.style.display = "none";
 })
+
+function fill_row_values(){
+    let string = "";
+    for (var i = 0; i<new_offer.length; i++){
+        string+="<td>"+ new_offer[i].value +"</td>";
+    }
+    return string;
+}
+
