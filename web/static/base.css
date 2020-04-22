@@ -11,7 +11,7 @@
     margin: 5%;
 }
 
-.container{
+.container {
     flex-direction: column;
     display: flex;
     flex-wrap: wrap;
@@ -23,11 +23,12 @@ table {
     text-align: left;
 }
 
-::selection{
+::selection {
     color: lightpink;
 }
 
-th, td{
+th,
+td {
     padding: 8px;
 }
 
@@ -40,43 +41,43 @@ td {
 }
 
 .btn {
-    width: 20%;
-    margin:auto;
+    outline:none !important;
 }
 
 .form {
     background: white;
     display: none;
-    flex-wrap: wrap;
     justify-content: center;
-    width: 50%;
-    margin:auto;
+    margin: auto;
+    position: fixed;
+    right: 1%;
+    top: 10%;
 }
 
 input {
+    outline:none;
+    border: 1px solid #e4e4e4;
+    border-radius: 20px;
     text-align: center;
+    margin-left: 10px;
+    height: 30px;
 }
 
 .btn:hover {
     background: lightgreen;
 }
+
 tr:hover {
     background-color: lightgray;
 }
 
 .hidden {
     position: fixed;
-    top:calc(50% - 32.5px);
+    right: 1%;
+    top: 5%;
 }
 
-.offer{
-    writing-mode: vertical-lr;
-    position: relative;
-    left: -15.5px;
-    padding: 7px 0 7px 0 ;
-}
-
-.offer:hover{
+.offer:hover {
     left: 0;
     transition: left 1s;
 }
