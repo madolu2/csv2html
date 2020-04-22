@@ -8,6 +8,24 @@ let btn_offer = document.querySelector(".offer"),
     },
     table = document.querySelector("tbody");
 
+document.querySelectorAll('tr').forEach(element => {
+    element.addEventListener('mouseover', ()=>{
+        children = Array.from(element.children)
+        children.forEach(element => {
+            element.style.backgroundColor = "#ff7878";
+        });
+    })
+    element.addEventListener('mouseout', ()=>{
+        children = Array.from(element.children)
+        children.forEach(element => {
+            element.style.backgroundColor = "#e4e4e4";
+        });
+    })
+    element.addEventListener('click', (e)=>{
+        parent = e.target.parentElement
+        parent.remove(e.target)
+    })
+});
 
 btn_offer.addEventListener("click", ()=>{
     form_offer.style.display = "flex";
