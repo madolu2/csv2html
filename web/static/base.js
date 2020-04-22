@@ -2,7 +2,8 @@ let btn_offer = document.querySelector(".offer"),
     form_offer = document.querySelector(".form"),
     btn_decline = document.querySelector(".decline"),
     new_offer = document.querySelectorAll("input"),
-    table = document.querySelector("tbody");
+    table = document.querySelector("tbody"),
+    tr_values = document.querySelectorAll("tr");
 
 document.querySelectorAll('tr').forEach(element => {
     if (element.id != "main-cells") {
@@ -21,6 +22,7 @@ document.querySelectorAll('tr').forEach(element => {
         element.addEventListener('click', (e) => {
             parent = e.target.parentElement
             parent.remove(e.target)
+            get_values(tr_values);
         })
     }
 
@@ -33,6 +35,7 @@ btn_offer.addEventListener("click", () => {
 btn_accept.addEventListener("click", () => {
    new_row = table.appendChild(document.createElement("tr"));
    new_row.innerHTML = fill_row_values();
+   get_values(tr_values);
 })
 
 btn_decline.addEventListener("click", () => {
@@ -47,3 +50,22 @@ function fill_row_values(){
     return string;
 }
 
+function get_values(array){
+    rows = []
+    blocks = []
+    th = []
+    array.forEach((row)=>{
+        console.log(row.cells.length);
+        for (var i = 0; i < row.cells.length; i++){
+            blocks.push(row.cells[i].innerHTML);
+        }
+        rows.push(blocks);
+        blocks = [];
+    })
+    th = [rows[0]];
+    rows.shift()
+    table_values = {
+        headers_value:th,
+        tr_values:rows
+    };
+}
