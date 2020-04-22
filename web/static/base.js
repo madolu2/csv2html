@@ -14,10 +14,12 @@ btn_offer.addEventListener("click", ()=>{
 })
 
 btn_accept.addEventListener("click", ()=>{
-    new_row = table.appendChild( document.createElement("tr"));
-    new_row.innerHTML = "<td>"+ new_offer.name.value + "</td><td>" + new_offer.cost.value +"</td>";
-    new_offer.name.value = "";
-    new_offer.cost.value = "";
+    if (new_offer.name.value != "" && new_offer.cost.value != "") {
+        new_row = table.appendChild( document.createElement("tr"));
+        new_row.innerHTML = "<td>"+ new_offer.name.value + "</td><td>" + new_offer.cost.value +"</td>";
+        new_offer.name.value = "";
+        new_offer.cost.value = "";  
+    }
 })
 
 btn_decline.addEventListener("click", ()=>{
