@@ -40,28 +40,24 @@ btn_decline.addEventListener("click", () => {
 })
 
 function pseudo_hover() {
-    tr_values = document.querySelectorAll("tr");
-    tr_values.forEach(element => {
+    function change_color(element, event, color) {
+        element.addEventListener('mouseover', () => {
+            children = Array.from(element.children)
+            children.forEach(element => {
+                element.style.backgroundColor = "#ff7878";
+            });
+        })
+    }
+    document.querySelectorAll("tr").forEach(element => {
         if (element.id != "main-cells") {
-            element.addEventListener('mouseover', () => {
-                children = Array.from(element.children)
-                children.forEach(element => {
-                    element.style.backgroundColor = "#ff7878";
-                });
-            })
-            element.addEventListener('mouseout', () => {
-                children = Array.from(element.children)
-                children.forEach(element => {
-                    element.style.backgroundColor = "#e4e4e4";
-                });
-            })
+            change_color(element, 'mouseover', "#ff7878")
+            change_color(element, 'mouseout', "#e4e4e4")
             element.addEventListener('click', (e) => {
                 parent = e.target.parentElement
                 parent.remove(e.target)
                 get_values(tr_values);
             })
         }
-
     });
 }
 
