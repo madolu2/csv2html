@@ -55,7 +55,6 @@ function get_values(array){
     blocks = []
     th = []
     array.forEach((row)=>{
-        console.log(row.cells.length);
         for (var i = 0; i < row.cells.length; i++){
             blocks.push(row.cells[i].innerHTML);
         }
