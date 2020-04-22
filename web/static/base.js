@@ -6,28 +6,8 @@ let btn_offer = document.querySelector(".offer"),
     table = document.querySelector("tbody"),
     tr_values = document.querySelectorAll("tr");
 
-tr_values.forEach(element => {
-    if (element.id != "main-cells") {
-        element.addEventListener('mouseover', () => {
-            children = Array.from(element.children)
-            children.forEach(element => {
-                element.style.backgroundColor = "#ff7878";
-            });
-        })
-        element.addEventListener('mouseout', () => {
-            children = Array.from(element.children)
-            children.forEach(element => {
-                element.style.backgroundColor = "#e4e4e4";
-            });
-        })
-        element.addEventListener('click', (e) => {
-            parent = e.target.parentElement
-            parent.remove(e.target)
-            get_values(tr_values);
-        })
-    }
 
-});
+pseudo_hover();
 
 btn_offer.addEventListener("click", () => {
     if (form_offer.style.display != "grid") {
@@ -38,16 +18,19 @@ btn_offer.addEventListener("click", () => {
 })
 
 btn_accept.addEventListener("click", () => {
-    new_offer.forEach(element => {
-        if (element.value) {
-            new_row = table.appendChild(document.createElement("tr"));
-            new_row.innerHTML = fill_row_values();
-            get_values(tr_values);
-            new_offer.forEach(el => {
-                el.value = '';
-            });
-        }
-    });
+    if (new_offer[0].value && new_offer[1].value) {
+        tr = document.createElement("tr");
+        new_offer.forEach(el => {
+            td = document.createElement("td");
+            td.innerHTML = el.value;
+            tr.appendChild(td)
+        });
+        table.appendChild(tr);
+        new_offer.forEach(element => {
+            element.value = "";
+        });
+        pseudo_hover();
+    }
 })
 
 btn_decline.addEventListener("click", () => {
@@ -56,12 +39,30 @@ btn_decline.addEventListener("click", () => {
     });
 })
 
-function fill_row_values() {
-    let string = "";
-    for (var i = 0; i < new_offer.length; i++) {
-        string += "<td>" + new_offer[i].value + "</td>";
-    }
-    return string;
+function pseudo_hover() {
+    tr_values = document.querySelectorAll("tr");
+    tr_values.forEach(element => {
+        if (element.id != "main-cells") {
+            element.addEventListener('mouseover', () => {
+                children = Array.from(element.children)
+                children.forEach(element => {
+                    element.style.backgroundColor = "#ff7878";
+                });
+            })
+            element.addEventListener('mouseout', () => {
+                children = Array.from(element.children)
+                children.forEach(element => {
+                    element.style.backgroundColor = "#e4e4e4";
+                });
+            })
+            element.addEventListener('click', (e) => {
+                parent = e.target.parentElement
+                parent.remove(e.target)
+                get_values(tr_values);
+            })
+        }
+
+    });
 }
 
 function get_values(array) {
