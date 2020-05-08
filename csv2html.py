@@ -3,10 +3,14 @@ import os
 import html_wrapper
 
 
-html_dir = 'web/html'
+html_dir = 'web/templates'
 csv_dir = 'csv'
 
 csv_files = os.listdir(csv_dir)
+
+wrapper = html_wrapper.HTMLWrapper()
+with open(f"{html_dir}/contentPage.html", 'w') as cp:
+    cp.write(wrapper.generate_content_page(csv_files))
 
 for csv_file in csv_files:
     with open(f"{csv_dir}/{csv_file}", 'r') as file:
@@ -23,8 +27,6 @@ for csv_file in csv_files:
             for key in csv_dict:
                 td_array.append(csv_dict[key])
             td_arrays.append(td_array)
-
-        wrapper = html_wrapper.HTMLWrapper()
 
         document = wrapper.generate_html_document(th_array, td_arrays, csv_file)
         with open(f"{html_dir}/{csv_file}.html", 'w', encoding='utf-8') as file:
