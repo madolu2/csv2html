@@ -1,8 +1,11 @@
+import sys, subprocess
 from  flask import Flask, request, render_template, jsonify
 from os import listdir
 
 
 app = Flask(__name__)
+
+subprocess.Popen([sys.executable, '../standalone app/csv2html.py', 'some shit'])
 
 def create_tag(tag, inner=None, css_class=None, **attributes):
     attribute_list = ' '.join([f'{name}="{value}"' for name, value in attributes.items()])

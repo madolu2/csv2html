@@ -1,5 +1,5 @@
-import csv
-import os
+import csv, os
+from sys import argv
 
 
 def create_tag(tag, value):
@@ -8,8 +8,12 @@ def create_tag(tag, value):
     else:
         return f'<{tag}>\n{value}\n</{tag}>\n'
 
-html_dir = 'html'
-csv_dir = 'csv'
+if argv:
+    html_dir = 'templates'
+    csv_dir = '../standalone app/csv'
+else:
+    html_dir = 'html'
+    csv_dir = 'csv'
 
 csv_files = os.listdir(csv_dir)
 
@@ -31,9 +35,8 @@ for csv_file in csv_files:
 
         table = create_tag('table', tags)
         
-    with open(f'{html_dir}/template.html', 'r') as file:
+    with open(f'template.html', 'r') as file:
         data = file.read()
     
     with open(f'{html_dir}/{csv_file}.html', 'w') as file:
         file.write(data.replace('replace_title', csv_file).replace('replace_body', table))
-
