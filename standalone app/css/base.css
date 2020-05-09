@@ -3,27 +3,23 @@
     margin: 0;
 }
 
-.sign {
-    width: 90%;
-    font-size: 30px;
-    text-align: center;
-    padding: 10px;
-    margin: 5%;
-}
-
 table {
     text-align: center;
     margin:auto;
+}
+
+th {
+    background-color: lightgrey;
+    padding: 2px;
 }
 
 td {
     text-transform: uppercase;
     background-color: #e4e4e4;
     border: solid white;
-    margin: 1px;
-    padding: 5px;
+    padding: 1px;
 }
 
-td:hover {
+tr:hover  td{
     background-color: lightgray;
 }
