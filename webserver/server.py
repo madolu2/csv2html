@@ -5,7 +5,11 @@ from os import listdir
 
 app = Flask(__name__)
 
-subprocess.Popen([sys.executable, '../standalone app/csv2html.py', 'some shit'])
+with  open('../standalone app/css/base.css', 'r') as sa_css , open('static/css/base.css', 'w') as web_css:
+    data = sa_css.read()
+    web_css.write(data)
+
+subprocess.Popen([sys.executable, '../standalone app/csv2html.py', 'value'])
 
 def create_tag(tag, inner=None, css_class=None, **attributes):
     attribute_list = ' '.join([f'{name}="{value}"' for name, value in attributes.items()])
@@ -21,6 +25,15 @@ def get_index():
                 .replace('replace_body',''.join([create_tag(tag='a',
                 inner=file.replace('.html', ''),
                 css_class='btn btn-dark col-2 m-2',
-                href=f"#{file.replace('.html', '')}") for file in listdir(path)]))
+                href=f"/files/{file.replace('.html', '')}") for file in listdir(path)]))
+
+@app.route('/files/<file_name>')
+def get_file(file_name):
+   return render_template(f'{file_name}.html')
+
+@app.route('/save_page', methods=['POST'])
+def post_page():
+    print(request.data)
+    return '200'
 
 app.run(debug=True)
