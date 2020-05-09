@@ -1,7 +1,5 @@
 import csv
 import os
-import html_wrapper
-
 
 
 def create_tag(tag, value):
@@ -10,7 +8,7 @@ def create_tag(tag, value):
     else:
         return f'<{tag}>\n{value}\n</{tag}>\n'
 
-html_dir = 'web/templates'
+html_dir = 'html'
 csv_dir = 'csv'
 
 csv_files = os.listdir(csv_dir)
@@ -21,15 +19,21 @@ for csv_file in csv_files:
         csv_dicts = csv.DictReader(file, delimiter=',')
 
         headers = csv_dicts.fieldnames
-        content = [x[y] for x in csv_dicts for y in headers]
+        cells = [create_tag('td', x[y]) for x in csv_dicts for y in headers]
 
         tags = [create_tag('tr', [create_tag('th', header) for header in headers])]
 
-        steps = [i for i in range(0, int(len(content)/len(headers)), len(headers))]
+        steps = [i for i in range(0, int(len(cells)/len(headers)), len(headers))]
 
-        tags.append(create_tag('tr', [create_tag('td', value) for s in steps for value in content[s:s+len(headers)] ]))
-            
-        table = create_tag('table', [x for x in tags])
+        cells = [cells[step:step+len(headers)] for step in steps]
 
-    with open('newhtml.html', 'w') as file:
-        file.write(table)
+        [tags.append(tag) for tag in [create_tag('tr', cell) for cell in cells]]
+
+        table = create_tag('table', tags)
+        
+    with open(f'{html_dir}/template.html', 'r') as file:
+        data = file.read()
+    
+    with open(f'{html_dir}/{csv_file}.html', 'w') as file:
+        file.write(data.replace('replace me', table))
+
