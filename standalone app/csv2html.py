@@ -35,5 +35,5 @@ for csv_file in csv_files:
         data = file.read()
     
     with open(f'{html_dir}/{csv_file}.html', 'w') as file:
-        file.write(data.replace('replace me', table))
+        file.write(data.replace('replace_title', csv_file).replace('replace_body', table))
 
