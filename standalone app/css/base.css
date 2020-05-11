@@ -3,6 +3,24 @@
     margin: 0;
 }
 
+.nav {
+    top:0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    position: sticky;
+}
+
+.hide {
+    display: none;
+}
+
+.menu {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+
 table {
     text-align: center;
     margin:auto;
@@ -21,5 +39,5 @@ td {
 }
 
 tr:hover  td{
-    background-color: lightgray;
+    background-color: lightgrey;
 }
