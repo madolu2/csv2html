@@ -1,4 +1,4 @@
-import sys, subprocess
+import sys, subprocess, json
 from  flask import Flask, request, render_template, jsonify
 from os import listdir
 
@@ -33,7 +33,9 @@ def get_file(file_name):
 
 @app.route('/save_page', methods=['POST'])
 def post_page():
-    print(request.data)
+    data = json.loads(request.data)
+    with open(f"templates/{data['title']}.html", 'w') as file:
+        file.write(data['document'])
     return '200'
 
 app.run(debug=True)

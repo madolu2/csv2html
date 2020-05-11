@@ -3,36 +3,6 @@
     margin: 0;
 }
 
-.nav {
-    flex-wrap: wrap;
-    flex-direction: column;
-    display: flex;
-    margin: auto;
-    position: sticky;
-    width: 100%;
-    top:0;
-}
-
-.menu{
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    width: 100%;
-}
-
-.hide{
-    display: none;
-}
-
-.add_menu{
-    justify-content: center;
-    width: 100%;
-}
-
-input{
-    text-align: center;
-}
-
 table {
     text-align: center;
     margin:auto;
